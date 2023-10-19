@@ -90,6 +90,7 @@ void main(void)
 
         uint8_t t_meas = t_meas_fixed/ MV_FIXED_DIVIDER;
 //        uint8_t t_bcd = (t_meas % 10) + (t_meas/10)*0x10;
+        printf("Temperature %i\n",t_meas);
         LATD=t_meas;
         __delay_ms(200);
         __delay_ms(200);
