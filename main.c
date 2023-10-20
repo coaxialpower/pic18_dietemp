@@ -74,6 +74,13 @@ void main(void)
     uint16_t fvra2x = READ_FVRA2X;
     float mv_float = MV_HIGH_RANGE_FLOAT;
     uint32_t mv_fixed = MV_HIGH_RANGE_FIXED;
+        __delay_ms(200);
+        __delay_ms(200);
+        __delay_ms(200);
+        __delay_ms(200);
+        __delay_ms(200);    
+    printf("Calibration %i\r\n",adc_dia);
+    printf("FVR value %i\r\n",fvra2x);
     
     while (1)
     {
@@ -83,14 +90,14 @@ void main(void)
         // float t_meas = 90 + (((adc_meas - adc_dia) * fvra2x)/(4095 * mv));
         // 4095 = 2^n-1, where n = 12 (adc resolution)
 
-        uint32_t num_fixed = (uint32_t)(adc_meas - adc_dia) * fvra2x * MV_FIXED_DIVIDER;
-        uint32_t den_fixed = (uint32_t)(ADC_RES_MINUS_ONE * mv_fixed) / MV_FIXED_DIVIDER;
+        int32_t num_fixed = (int32_t)(adc_meas - adc_dia) * fvra2x * MV_FIXED_DIVIDER;
+        int32_t den_fixed = (int32_t)(ADC_RES_MINUS_ONE * mv_fixed) / MV_FIXED_DIVIDER;
         int32_t t_meas_fixed = (int32_t)90 * MV_FIXED_DIVIDER - num_fixed/den_fixed;
  
 
         uint8_t t_meas = t_meas_fixed/ MV_FIXED_DIVIDER;
 //        uint8_t t_bcd = (t_meas % 10) + (t_meas/10)*0x10;
-        printf("Temperature %i\n",t_meas);
+        printf("FVR %i ADC %i Temperature %i\r\n",fvr_meas,adc_meas,t_meas);
         LATD=t_meas;
         __delay_ms(200);
         __delay_ms(200);
