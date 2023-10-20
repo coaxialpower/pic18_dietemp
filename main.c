@@ -96,8 +96,9 @@ void main(void)
  
 
         uint8_t t_meas = t_meas_fixed/ MV_FIXED_DIVIDER;
+        uint8_t t_deci = (t_meas_fixed/ (MV_FIXED_DIVIDER/10))%10;
 //        uint8_t t_bcd = (t_meas % 10) + (t_meas/10)*0x10;
-        printf("FVR %i ADC %i Temperature %i\r\n",fvr_meas,adc_meas,t_meas);
+        printf("FVR %i ADC %i Temperature %i.%i\r\n",fvr_meas,adc_meas,t_meas,t_deci);
         LATD=t_meas;
         __delay_ms(200);
         __delay_ms(200);
