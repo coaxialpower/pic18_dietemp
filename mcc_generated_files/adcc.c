@@ -80,10 +80,10 @@ void ADCC_Initialize(void)
     ADRPT = 0x10;
     // ADPCH ANA0; 
     ADPCH = 0x00;
-    // ADACQ 25; 
-    ADACQL = 0x19;
-    // ADACQ 0; 
-    ADACQH = 0x00;
+    // ADACQ 64; 
+    ADACQL = 0x40;
+    // ADACQ 6; 
+    ADACQH = 0x06;
     // ADCAP Additional uC disabled; 
     ADCAP = 0x00;
     // ADPRE 0; 
@@ -102,8 +102,8 @@ void ADCC_Initialize(void)
     ADREF = 0x03;
     // ADACT disabled; 
     ADACT = 0x00;
-    // ADCS FOSC/2; 
-    ADCLK = 0x00;
+    // ADCS FOSC/64; 
+    ADCLK = 0x1F;
     // ADGO stop; ADFM right; ADON enabled; ADCS FOSC/ADCLK; ADCONT disabled; 
     ADCON0 = 0x84;
     

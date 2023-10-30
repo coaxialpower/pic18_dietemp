@@ -70,8 +70,9 @@ adc_result_t adcc_read_average(adcc_channel_t channel)
 void main(void)
 {
     SYSTEM_Initialize();
-    adc_result_t adc_dia = READ_TSHR2;
-    uint16_t fvra2x = READ_FVRA2X;
+    adc_result_t adc_dia = FLASH_ReadWord(0x003F002C);
+    uint16_t     fvra2x  = FLASH_ReadWord(0x003F0032);
+    TBLPTRU=0; // fix side effect of FLASH_ReadWord()
     float mv_float = MV_HIGH_RANGE_FLOAT;
     uint32_t mv_fixed = MV_HIGH_RANGE_FIXED;
         __delay_ms(200);
